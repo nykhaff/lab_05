@@ -1,20 +1,72 @@
-﻿// lab_05_4.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+﻿// lab_05_4.cpp
+// Войтович Богдан
+// Лабораторна робота № 5.4
+// Обчислення сум та добутків за допомогою рекурсії
+// Варіант 3
 
+#include <cmath>
 #include <iostream>
 
-int main()
-{
-    std::cout << "Hello World!\n";
+using namespace std;
+
+double rec_d_par_d(const int i, const int N, double t) {
+    t = t + (1.0 / i) + sqrt(1 + pow(sin(i), 2));
+
+    if (i <= N) {
+        return t;
+    } else {
+        rec_d_par_d(i - 1, N, t);
+    }
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+double rec_d_par_up(const int i, const int N, double t) {
+    t = t + (1.0 / i) + sqrt(1 + pow(sin(i), 2));
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+    if (i >= N) {
+        return t;
+    } else {
+        rec_d_par_d(i + 1, N, t);
+    }
+}
+
+double rec_up_par_d(const int i, const int N) {
+    if (i < N) {
+        return 0;
+    } else {
+        return (1.0 / i) + sqrt(1 + pow(sin(i), 2)) + rec_up_par_d(i - 1, N);
+    }
+}
+
+double rec_up_par_up(const int i, const int N) {
+    if (i > N) {
+        return 0;
+    } else {
+        return (1.0 / i) + sqrt(1 + pow(sin(i), 2)) + rec_up_par_up(i + 1, N);
+    }
+}
+
+double c_iter(const int i, const int N) {
+    double s = 0;
+    for (int c = i; c <= N; c++) {
+        s += (1.0 / i) + sqrt(1 + pow(sin(i), 2));
+    }
+
+    return s;
+}
+
+int main() {
+    int i = 1, N;
+
+    cout << "N = ";
+    cin >> N;
+
+    cout << "\n1. (rec down --) -> " << rec_d_par_d(i, N, 0);
+    cout << "\n2. (rec down ++) -> " << rec_d_par_up(i, N, 0);
+    cout << "\n3. (rec up --) -> " << rec_up_par_up(i, N);
+    cout << "\n4. (rec up ++) -> " << rec_up_par_up(i, N);
+    cout << "\n5. (iter) -> " << c_iter(i, N);
+
+    cin.ignore();
+    cin.get();
+    return 0;
+}
