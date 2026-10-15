@@ -15,7 +15,7 @@ double rec_d_par_d(const int i, const int N, double t) {
     if (i <= N) {
         return t;
     } else {
-        rec_d_par_d(i - 1, N, t);
+        return rec_d_par_d(i - 1, N, t);
     }
 }
 
@@ -25,7 +25,7 @@ double rec_d_par_up(const int i, const int N, double t) {
     if (i >= N) {
         return t;
     } else {
-        rec_d_par_d(i + 1, N, t);
+        return rec_d_par_up(i + 1, N, t);
     }
 }
 
