@@ -9,13 +9,13 @@
 
 using namespace std;
 
-double rec_d_par_d(const int i, const int N, double t) {
-    t = t + (1.0 / N) + sqrt(1 + pow(sin(N), 2));
+double rec_d_par_d(const int i, double t) {
+    t = t + (1.0 / i) + sqrt(1 + pow(sin(i), 2));
 
-    if (N <= i) {
+    if (i <= 1) {
         return t;
     } else {
-        return rec_d_par_d(i, N - 1, t);
+        return rec_d_par_d(i - 1, t);
     }
 }
 
@@ -29,11 +29,11 @@ double rec_d_par_up(const int i, const int N, double t) {
     }
 }
 
-double rec_up_par_d(const int i, const int N) {
-    if (N < i) {
+double rec_up_par_d(const int i) {
+    if (i < 1) {
         return 0;
     } else {
-        return (1.0 / N) + sqrt(1 + pow(sin(N), 2)) + rec_up_par_d(i, N - 1);
+        return (1.0 / i) + sqrt(1 + pow(sin(i), 2)) + rec_up_par_d(i - 1);
     }
 }
 
@@ -60,9 +60,9 @@ int main() {
     cout << "N = ";
     cin >> N;
 
-    cout << "\n1. (rec down --) -> " << rec_d_par_d(i, N, 0);
+    cout << "\n1. (rec down --) -> " << rec_d_par_d(N, 0);
     cout << "\n2. (rec down ++) -> " << rec_d_par_up(i, N, 0);
-    cout << "\n3. (rec up --) -> " << rec_up_par_d(i, N);
+    cout << "\n3. (rec up --) -> " << rec_up_par_d(N);
     cout << "\n4. (rec up ++) -> " << rec_up_par_up(i, N);
     cout << "\n5. (iter) -> " << c_iter(i, N);
 
