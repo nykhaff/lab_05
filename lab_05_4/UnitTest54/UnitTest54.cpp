@@ -4,8 +4,8 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace UnitTest1 {
-    TEST_CLASS(UnitTest1) {
+namespace UnitTest54 {
+    TEST_CLASS(UnitTest54) {
     public:
 
         TEST_METHOD(TestMethod1) {
