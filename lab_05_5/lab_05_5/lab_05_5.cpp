@@ -1,20 +1,41 @@
-﻿// lab_05_5.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+﻿// lab_05_5.cpp
+// Войтович Богдан
+// Лабораторна робота № 5.5
+// Рекурсивні функції
+// Варіант 3
 
 #include <iostream>
+#include <iomanip>
 
-int main()
-{
-    std::cout << "Hello World!\n";
+using namespace std;
+
+int C(const int n, const int k, int l, int& d) {
+    if (l > d) {
+        d = l;
+    }
+
+    cout << setw(9) << "\nLevel: " << l << setw(6) << " C(" << n << ", " << k << ")";
+
+    if (k == 0 || k == n) {
+        return 1;
+    } else {
+        return C(n - 1, k - 1, l + 1, d) + C(n - 1, k, l + 1, d);
+    }
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+int main() {
+    int n, k, r, d = 0;
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+    cout << "n = ";
+    cin >> n;
+    cout << "k = ";
+    cin >> k;
+
+    r = C(n, k, 1, d);
+    cout << "\n\nC(" << n << ", " << k << ") = " << r;
+    cout << "\nDepth: " << d;
+
+	cin.ignore();
+	cin.get();
+	return 0;
+}
