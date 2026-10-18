@@ -14,7 +14,7 @@ int C(const int n, const int k, int l, int& d) {
         d = l;
     }
 
-    cout << setw(9) << "\nLevel: " << l << setw(6) << " C(" << n << ", " << k << ")";
+    cout << "\n" << setw(9) << "Level: " << l << setw(6) << " C(" << n << ", " << k << ")";
 
     if (k == 0 || k == n) {
         return 1;
